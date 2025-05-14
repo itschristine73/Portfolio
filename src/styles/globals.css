@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-snap-type: y mandatory; /* Enable snap scrolling on vertical axis */
+  scroll-behavior: smooth; /* Smooth scrolling */
+
+}
+
+
+.animated-gradient {
+  background: linear-gradient(270deg, #140505, #1a0505, #2b0202);
+  background-size: 600% 600%;
+}
+
+.grunge-hover-shadow {
+  transition: all 0.3s ease;
+}
+
+.grunge-hover-shadow:hover {
+  box-shadow: 0 0 12px 3px rgba(255, 0, 0, 0.5);
+}
+
+.scroll-container {
+  scroll-snap-type: y mandatory; /* Enables vertical snapping */
+  overflow-y: scroll;  /* Enable vertical scrolling */
+  height: 100vh; /* Full screen height */
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Apply to each child div */
+.scroll-item {
+  scroll-snap-align: start; /* Align the div at the start of the container */
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes slowPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+.pulse-border::before {
+  animation: slowPulse 4s ease-in-out infinite;
+}
+
+.disabled-link {
+  pointer-events: none;   /* Prevent clicks */
+  color: gray;            /* Visually indicate it's disabled */
+  opacity: 0.6;
+  cursor: not-allowed;
+  text-decoration: none;
+}
